@@ -1,4 +1,4 @@
-# FCN_new model
+# LRASPP_new model
 
 FCN model baseline
 backbone: resnet50, resnet101
