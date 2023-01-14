@@ -64,14 +64,14 @@ def parse_args():
     ),
     parser.add_argument(
         "--cuda",
-        default=True,
+        default=False,
         type=bool,
     ),
 
     # ---------- 文件夹的位置参数 ----------
     parser.add_argument(
         "--dataset-path",
-        default="../../dataset/SUIMdevkit",
+        default="../../SUIMdevkit_mini",
         type=str,
     ),
     parser.add_argument(

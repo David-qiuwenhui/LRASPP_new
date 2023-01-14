@@ -62,7 +62,7 @@ def parse_args():
     parser.add_argument("--cuda", default=False, type=bool, help="use cuda")
     parser.add_argument(
         "--amp",
-        default=True,
+        default=False,
         type=bool,
         help="Use torch.cuda.amp for mixed precision training",
     )

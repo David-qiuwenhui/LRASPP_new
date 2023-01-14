@@ -49,12 +49,12 @@ def parse_args():
     ),
     parser.add_argument(
         "--aux-branch",
-        default=True,
+        default=False,
         type=bool,
     ),
     parser.add_argument(
         "--cuda",
-        default=True,
+        default=False,
         type=bool,
     ),
 
