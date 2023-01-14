@@ -32,7 +32,7 @@ def parse_args():
     # ---------- 数据集超参数 ----------
     parser.add_argument(
         "--data-path",
-        default="../../SUIMdevkit_mini",
+        default="../../dataset/SUIMdevkit",
         type=str,
         help="dataset root",
     )
@@ -59,18 +59,18 @@ def parse_args():
     )
 
     # ---------- 硬件的超参数 ----------
-    parser.add_argument("--cuda", default=False, type=bool, help="use cuda")
+    parser.add_argument("--cuda", default=True, type=bool, help="use cuda")
     parser.add_argument(
         "--amp",
-        default=False,
+        default=True,
         type=bool,
         help="Use torch.cuda.amp for mixed precision training",
     )
 
     # ---------- 训练Epoch和Batch size超参数 ----------
     parser.add_argument("--freeze-train", default=False, type=bool)
-    parser.add_argument("--freeze-batch-size", default=4, type=int)
-    parser.add_argument("--unfreeze-batch-size", default=4, type=int)
+    parser.add_argument("--freeze-batch-size", default=16, type=int)
+    parser.add_argument("--unfreeze-batch-size", default=16, type=int)
     parser.add_argument(
         "--init-epoch", default=0, type=int, metavar="N", help="init epoch"
     )
@@ -83,7 +83,7 @@ def parse_args():
     )
     parser.add_argument(
         "--unfreeze-epochs",
-        default=10,
+        default=500,
         type=int,
         metavar="N",
         help="number of unfreeze epochs to train",
