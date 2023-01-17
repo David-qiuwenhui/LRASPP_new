@@ -101,18 +101,19 @@ class LRASPP(nn.Module):
         features = self.backbone(
             x
         )  # feature={OrderedDict:2} {'low':Tensor(bs, 40, 60, 60), 'high':Tensor(bs, 960, 30, 30)}
+
         out = self.classifier(
             features
         )  # out:Tensor(bs, 21, 60, 60) high分支对高层feature maps信息进行处理，low分支对底层feature maps信息进行处理，再讲high和low分支的信息进行相加融合
+
         out = F.interpolate(
             out, size=input_shape, mode="bilinear", align_corners=False
         )  # out:Tensor(bs, 21, 480, 480) 将out的(height, width)上采样回输入图片的大小(480, 480)
 
-        result = OrderedDict()
-        result["out"] = out
-
+        # result = OrderedDict()
+        # result["out"] = out
         # return result  # result={OrderedDict:1} {'out':Tensor(bs, 21, 480, 480)}
-        return result["out"]
+        return out
 
 
 class LRASPPHead(nn.Module):

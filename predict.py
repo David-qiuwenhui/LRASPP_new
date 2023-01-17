@@ -17,7 +17,7 @@ def parse_args():
     # predict, dir_predict, fps, video
     parser.add_argument(
         "--mode",
-        default="dir_predict",
+        default="fps",
         type=str,
         help="predict, dir_predict, fps, video",
     ),
@@ -29,7 +29,7 @@ def parse_args():
     ),
     parser.add_argument(
         "--model-path",
-        default="./logs/best_epoch_weights.pth",
+        default="./logs/01_LRASPP_mobilenetv3_large_500epochs_bs16_lr1e-2/best_epoch_weights.pth",
         type=str,
     ),
     parser.add_argument(
@@ -39,7 +39,7 @@ def parse_args():
     ),
     parser.add_argument(
         "--backbone",
-        default="resnet50",
+        default="mobilenetv3_large",
         type=str,
     ),
     parser.add_argument(
@@ -54,7 +54,7 @@ def parse_args():
     ),
     parser.add_argument(
         "--cuda",
-        default=False,
+        default=True,
         type=bool,
     ),
 

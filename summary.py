@@ -5,18 +5,16 @@ import torch
 from thop import clever_format, profile
 from torchsummary import summary
 
-from nets.fcn_model import fcn_resnet50
+from nets.lraspp_model import lraspp_mobilenetv3_large
 
 if __name__ == "__main__":
     input_shape = [512, 512]
     num_classes = 7
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    model = fcn_resnet50(
-        aux=True, num_classes=num_classes, pretrained_backbone=False
-    ).to(device)
+    model = lraspp_mobilenetv3_large(num_classes=num_classes).to(device)
     # ---------- 打印卷积网络模型的每层参数数量 ----------
-    summary(model, (3, input_shape[0], input_shape[1]))
+    # summary(model, (3, input_shape[0], input_shape[1]))
 
     dummy_input = torch.randn(1, 3, input_shape[0], input_shape[1]).to(device)
     flops, params = profile(model.to(device), (dummy_input,), verbose=False)
