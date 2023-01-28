@@ -139,7 +139,7 @@ def main(args):
         count = args.count
         img = args.img_path
         image = Image.open(img)
-        r_image = fcn.detect_image(image, count=count, name_classes=name_classes)
+        r_image = fcn.detect_image(image, count, name_classes)
         r_image.save(args.img_save_path)
         # r_image.show()
 
@@ -247,7 +247,7 @@ def main(args):
                 2,
             )
 
-            cv2.imshow("video", frame)
+            # cv2.imshow("video", frame)
             c = cv2.waitKey(1) & 0xFF
             if video_save_path != "":
                 out.write(frame)
@@ -260,7 +260,7 @@ def main(args):
         if video_save_path != "":
             print("Save processed video to the path :" + video_save_path)
             out.release()
-        cv2.destroyAllWindows()
+        # cv2.destroyAllWindows()
 
     else:
         raise AssertionError(
