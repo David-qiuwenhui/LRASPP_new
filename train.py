@@ -306,6 +306,7 @@ def main(args):
         loss_history = LossHistory(log_dir, model, input_shape)
     else:
         loss_history = None
+
     # 设置混合精度训练
     if fp16:
         from torch.cuda.amp import GradScaler as GradScaler
@@ -404,11 +405,11 @@ def main(args):
     #   提示OOM或者显存不足请调小Batch_size
     # ------------------------------------------------------#
     UnFreeze_flag = False
-    #   冻结模型的参数
+    #  冻结模型的参数
     if Freeze_Train:
         for param in model.backbone.parameters():
             param.requires_grad = False
-    #   如果不冻结训练的话，直接设置batch_size为Unfreeze_batch_size
+    #  如果不冻结训练的话，直接设置batch_size为Unfreeze_batch_size
     batch_size = Freeze_batch_size if Freeze_Train else Unfreeze_batch_size
 
     # ---------- 配置训练的优化器 ----------
@@ -561,7 +562,7 @@ def main(args):
                 collate_fn=seg_dataset_collate,
                 sampler=val_sampler,
             )
-
+            
             UnFreeze_flag = True
 
         if distributed:
