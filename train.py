@@ -562,7 +562,7 @@ def main(args):
                 collate_fn=seg_dataset_collate,
                 sampler=val_sampler,
             )
-            
+
             UnFreeze_flag = True
 
         if distributed:

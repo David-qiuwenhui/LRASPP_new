@@ -214,7 +214,7 @@ def fit_one_epoch(
     # ---------- 模型的验证过程 ----------------------------------------------------------------------
     if local_rank == 0:
         pbar.close()
-        print("--------- Finish Train! ----------")
+        print("--------- Finish Train ----------")
         print("********** Start Validation **********")
         pbar = tqdm(
             total=epoch_step_val,
@@ -300,15 +300,15 @@ def fit_one_epoch(
             val_loss += loss.item()
             val_f_score += _f_score.item()
 
-        if local_rank == 0:
-            pbar.set_postfix(
-                **{
-                    "📝️val_loss": val_loss / (iteration + 1),
-                    "📒f_score": val_f_score / (iteration + 1),
-                    "📖lr": get_lr(optimizer),
-                }
-            )
-            pbar.update(1)
+            if local_rank == 0:
+                pbar.set_postfix(
+                    **{
+                        "📝️val_loss": val_loss / (iteration + 1),
+                        "📒f_score": val_f_score / (iteration + 1),
+                        "📖lr": get_lr(optimizer),
+                    }
+                )
+                pbar.update(1)
     # ----------------------------------------------------------------------------------------------
 
     # -------------------- 保存本次epoch的训练和验证结果 ------------------------
